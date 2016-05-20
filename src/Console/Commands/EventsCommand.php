@@ -14,10 +14,10 @@ class EventsCommand extends Command
 
     protected $factory;
 
-    public function __construct(ForkableFactory $factory)
+    public function __construct()
     {
         parent::__construct();
-        $this->factory = $factory;
+        $this->factory = new ForkableFactory;
     }
 
     public function handle()
