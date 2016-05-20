@@ -57,7 +57,7 @@ class EventsCommand extends Command
     private function work($worker, $loop, $config)
     {
         try {
-            (new Worker($loop))->init($worker, $config, $this)->start();
+            (new Worker($loop))->init($worker, $config)->start();
         } catch (\Exception $exception) {
             app('log')->error($exception->getMessage());
         }

@@ -13,8 +13,6 @@ class Worker extends ThreadBase
 {
     protected $config;
 
-    protected $console;
-
     protected $loop;
 
     protected $iteration = 0;
@@ -31,9 +29,8 @@ class Worker extends ThreadBase
         $this->loop = $loop;
     }
 
-    public function init($worker, $config, $console)
+    public function init($worker, $config)
     {
-        $this->console = $console;
         $this->config = $config;
         $this->worker = $worker;
         $this->factory = new ForkableFactory();
@@ -56,7 +53,7 @@ class Worker extends ThreadBase
             $this->config['threads']['max'],
             $this->config['threads']['timeout']
         );
-        $this->balancer->init($this->config, $this->console);
+        $this->balancer->init($this->config);
         $this->work($loop);
     }
 

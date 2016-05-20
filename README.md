@@ -1,8 +1,16 @@
 # Laravel Event Worker
-I needed a way to trigger async events with workers, delays, throttles, bla bla bla...
+Trigger Laravel Events with mulitple workers, threads, delays & throttles.
+
+If you can explain it better please send a PR.
 
 # minimum-stability: dev
-Womb womb womb, this is alpha, for fun, but hey - it seems to work :D.
+This package uses [react-thread-pool](https://github.com/RogerWaters/react-thread-pool) that is a dev release and this package itself is very experimental.
+
+# Requirements
+* Laravel 5.2.*
+* PHP >= 5.4, only tested on 7.
+* pcntl
+* Linux/Unix
 
 # Installation
 Install with composer
@@ -19,11 +27,61 @@ Publish the config.
 ~~~
 php artisan vendor:publish
 ~~~
-Edit the config to adjust settings, bla bla.
 
-Create some events, bla bla.
+
+# Usage
+The default config uses the `App\Events\FetchTwitterEvent` event, create it or edit `configs/event-workers.php` to use your events.
+
+Edit `app/Providers/EventServiceProvider.php` and define your event and listener.
+~~~
+protected $listen = [
+    'App\Events\FetchTwitterEvent' => [
+        'App\Listeners\FetchTwitterListener',
+    ],
+];
+~~~
+
+Create the event.
+~~~
+php artisan event:generate
+~~~
+
+Edit `app/Events/FetchTwitterEvent.php` and make it do something, like..
+~~~
+public function __construct($iteration)
+{
+    echo "Hello world.".PHP_EOL;
+}
+~~~
+Certainly you'll put stuff in the listener and make a proper event, but you get the idea.
+
 
 Run it.
 ~~~
 php artisan events:serve
 ~~~
+
+# Configuration
+In `configs/event-workers.php` you define the events you want to run.
+
+~~~
+return [
+  'twitter' => [              // name
+      'delay'    => 1,        // delay between creating threads
+      'throttle' => '1:1',    // throttle for creating threads
+      'workers'  => 1,        // number of workers to create
+      'threads'  => [
+          'min'     => 1,     // minium threads per worker
+          'max'     => 3,     // maximum threads per worker
+          'timeout' => 30,    // thread time out
+      ],
+      'class' => \App\Events\FetchTwitterEvent::class, // your event class
+  ],
+];
+~~~
+
+# Testing
+Ya right. I aint got time for that.
+
+# Contributing
+That'd be swell. Send a PR.

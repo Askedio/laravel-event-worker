@@ -21,6 +21,6 @@ return [
           'max'     => 10,
           'timeout' => 30,
       ],
-      'class' => \App\Events\FetchUserTwitterEvent::class,
+      'class' => \App\Events\FetchTwitterEvent::class,
   ],
 ];

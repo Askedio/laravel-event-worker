@@ -10,17 +10,14 @@ class Thread extends ThreadBase
 {
     protected $config;
 
-    protected $console;
-
     public function __construct(ForkableLoopInterface $loop)
     {
         parent::__construct($loop);
     }
 
-    public function init($config, $console)
+    public function init($config)
     {
         $this->config = $config;
-        $this->console = $console;
     }
 
     public function InitializeExternal(ThreadCommunicator $loop)
