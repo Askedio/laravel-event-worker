@@ -2,13 +2,12 @@
 
 namespace Askedio\EventWorker;
 
-use RogerWaters\ReactThreads\ThreadBase;
-use React\EventLoop\Factory;
-use RogerWaters\ReactThreads\ThreadCommunicator;
-use RogerWaters\ReactThreads\EventLoop\ForkableLoopInterface;
-use RogerWaters\ReactThreads\EventLoop\ForkableFactory;
-use Askedio\EventWorker\Thread;
 use GrahamCampbell\Throttle\Facades\Throttle;
+use React\EventLoop\Factory;
+use RogerWaters\ReactThreads\EventLoop\ForkableFactory;
+use RogerWaters\ReactThreads\EventLoop\ForkableLoopInterface;
+use RogerWaters\ReactThreads\ThreadBase;
+use RogerWaters\ReactThreads\ThreadCommunicator;
 
 class Worker extends ThreadBase
 {
@@ -90,7 +89,7 @@ class Worker extends ThreadBase
 
         return !Throttle::attempt(
             [
-                'ip' => gethostname(),
+                'ip'    => gethostname(),
                 'route' => $this->config['class'].$this->worker,
             ],
             $throttle[0],
