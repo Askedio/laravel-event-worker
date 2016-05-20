@@ -1,0 +1,23 @@
+{
+    "name": "askedio/laravel-event-worker",
+    "description": "A Laravel Event Worker",
+    "minimum-stability": "dev",
+    "keywords": ["laravel"],
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.2.*",
+        "react/react": "^0.4.2",
+        "evenement/evenement": "dev-master",
+        "react/event-loop": "0.4.1",
+        "rogerwaters/react-thread-pool": "dev-master",
+        "thujohn/twitter": "^2.2",
+        "graham-campbell/throttle": "^5.2"
+     },
+    "autoload": {
+        "psr-4": {
+            "Askedio\\EventWorker\\": "src/"
+        }
+    }
+}
