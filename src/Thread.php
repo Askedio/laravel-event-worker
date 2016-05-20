@@ -2,10 +2,9 @@
 
 namespace Askedio\EventWorker;
 
-use RogerWaters\ReactThreads\ThreadBase;
-use React\EventLoop\Factory;
-use RogerWaters\ReactThreads\ThreadCommunicator;
 use RogerWaters\ReactThreads\EventLoop\ForkableLoopInterface;
+use RogerWaters\ReactThreads\ThreadBase;
+use RogerWaters\ReactThreads\ThreadCommunicator;
 
 class Thread extends ThreadBase
 {

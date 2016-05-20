@@ -2,10 +2,9 @@
 
 namespace Askedio\EventWorker\Console\Commands;
 
+use Askedio\EventWorker\Worker;
 use Illuminate\Console\Command;
 use RogerWaters\ReactThreads\EventLoop\ForkableFactory;
-use Askedio\EventWorker\Worker;
-use Symfony\Component\Console\Input\InputOption;
 
 class EventsCommand extends Command
 {
@@ -37,21 +36,20 @@ class EventsCommand extends Command
     private function build($loop)
     {
         if ($name = $this->option('worker')) {
-            $this->info('-- ' . $name);
+            $this->info('-- '.$name);
+
             return $this->workers($loop, config($name));
         }
 
         foreach (config('workers') as $name => $config) {
-            $this->info('-- ' . $name);
+            $this->info('-- '.$name);
             $this->workers($loop, $config);
         }
-
-        return;
     }
 
     private function workers($loop, $config)
     {
-        for ($i=0; $i < $config['workers']; $i++) {
+        for ($i = 0; $i < $config['workers']; $i++) {
             $this->work($i, $loop, $config);
         }
     }
