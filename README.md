@@ -1,12 +1,6 @@
 # Laravel Event Worker
 Trigger Laravel Events with mulitple workers, threads, delays & throttles.
 
-If you can explain it better please send a PR.
-
-# Why?
-I wanted to max out Twitters Request Limits without going over or having to much delay between calls (a 1 min cron just wouldn't cut it when you can pull a query every 3 seconds).
-
-
 # minimum-stability: dev
 This package uses [react-thread-pool](https://github.com/RogerWaters/react-thread-pool) that is a dev release and this package itself is very experimental.
 
