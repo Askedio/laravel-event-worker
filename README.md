@@ -30,18 +30,10 @@ php artisan vendor:publish
 # Usage
 The default config uses the `App\Events\FetchTwitterEvent` event, create it or edit `configs/event-workers.php` to use your events.
 
-Edit `app/Providers/EventServiceProvider.php` and define your event and listener.
-~~~
-protected $listen = [
-    'App\Events\FetchTwitterEvent' => [
-        'App\Listeners\FetchTwitterListener',
-    ],
-];
-~~~
 
 Create the event.
 ~~~
-php artisan event:generate
+php artisan make:event FetchTwitter
 ~~~
 
 Edit `app/Events/FetchTwitterEvent.php` and make it do something, like..
